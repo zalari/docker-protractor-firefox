@@ -14,7 +14,9 @@ RUN apt-get update && apt-get install -y --force-yes \
     libdbus-glib-1-dev \
     libgtk2.0-0 \
     libxt6 \
-    python-pip
+    python-pip \
+    xvfb \
+    openjdk-7-jre
 # install browser
 RUN wget --no-parent https://ftp.mozilla.org/pub/firefox/releases/45.6.0esr/linux-x86_64/en-US/firefox-45.6.0esr.tar.bz2
 RUN tar xfj firefox-*.tar.bz2
