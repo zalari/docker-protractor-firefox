@@ -12,9 +12,17 @@ RUN npm install -g \
     protractor@4.0.9 \
     protractor-screenshot-reporter
 RUN webdriver-manager update
+RUN ln -s /usr/local/lib/node_modules/protractor/node_modules/webdriver-manager/selenium/geckodriver-v0.12.0 /usr/bin/geckodriver
+ENV PATH "$PATH:/usr/bin/geckodriver"
+# install marionette webdriver for firefox again
+#RUN wget --no-parent https://github.com/mozilla/geckodriver/releases/download/v0.13.0/geckodriver-v0.13.0-linux64.tar.gz
+#RUN tar xfz geckodriver-*.tar.gz
+#RUN ln -s ./geckodriver /usr/bin/geckodriver
+#ENV PATH "$PATH:/usr/bin/geckodriver"
 # install dependencies
+RUN sh -c 'echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.list'
 RUN apt-get update && apt-get install -y --force-yes \
-    firefox-esr=45.6.0esr-1~deb8u1 \
+    firefox=43.0~linuxmint1+betsy \
     openjdk-7-jre \
     xvfb
 # copy startup script
